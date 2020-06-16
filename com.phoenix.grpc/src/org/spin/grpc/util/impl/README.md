@@ -20,3 +20,5 @@
 - `UserInterfaceServiceImplementation` check commented packages and commented models for remaining porting into idempiere.
 
 - `idempiere` PO and `adempiere` PO has some minor differences like; `getUUID` method not present and static values `COLUMNNAME_UU` contained uuid but in idempiere `COLUMNNAME_<tablename>_UU` contains. These minor differences has to be ported into idempiere. (the main purpose of this project is to do the same as well).
+
+- Due to inconsistencies `callouts` donot work in this build of the server.

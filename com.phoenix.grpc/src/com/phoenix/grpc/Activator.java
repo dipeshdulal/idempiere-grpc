@@ -3,6 +3,7 @@ package com.phoenix.grpc;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.spin.grpc.util.impl.AccessServer;
+import org.spin.grpc.util.impl.BusinessDataServer;
 import org.spin.grpc.util.impl.DictionaryServer;
 import org.spin.grpc.util.impl.EnrollmentServer;
 
@@ -11,6 +12,7 @@ public class Activator implements BundleActivator {
 	DictionaryServer dictionaryServer;
 	AccessServer accessServer;
 	EnrollmentServer enrollmentServer;
+	BusinessDataServer businessDataServer;
 	
 	@Override
 	public void start(BundleContext context) throws Exception {
@@ -26,6 +28,8 @@ public class Activator implements BundleActivator {
 		accessServer.start();
 		enrollmentServer = new EnrollmentServer(50047);
 		enrollmentServer.start();
+		businessDataServer = new BusinessDataServer(50052);
+		businessDataServer.start();
 	}
 
 	@Override
@@ -34,6 +38,7 @@ public class Activator implements BundleActivator {
 		dictionaryServer.stop();
 		accessServer.stop();
 		enrollmentServer.stop();
+		businessDataServer.stop();
 	}
 
 }

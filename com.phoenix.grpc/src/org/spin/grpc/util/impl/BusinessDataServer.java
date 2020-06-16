@@ -66,7 +66,7 @@ public class BusinessDataServer {
 	        return GrpcSslContexts.configure(sslClientContextBuilder);
 	  }
 	  
-	  private void start() throws IOException {
+	  public void start() throws IOException {
 		  if(isTlsEnabled) {
 			  server = NettyServerBuilder.forPort(port)
 		                .addService(new BusinessDataServiceImplementation())
@@ -78,9 +78,9 @@ public class BusinessDataServer {
 					  	//	Base Service
 				        .addService(new BusinessDataServiceImplementation())
 				        //	Core Functionality
-//				        .addService(new CoreFunctionalityImplementation())
+				        .addService(new CoreFunctionalityImplementation())
 				        //	User Interface
-//				        .addService(new UserInterfaceServiceImplementation())
+				        .addService(new UserInterfaceServiceImplementation())
 				        //	Dashboarding
 //				        .addService(new DashboardingServiceImplementation())
 				        //	Workflow
@@ -104,7 +104,7 @@ public class BusinessDataServer {
 		    });
 	  }
 
-	  private void stop() {
+	  public void stop() {
 	    if (server != null) {
 	      server.shutdown();
 	    }

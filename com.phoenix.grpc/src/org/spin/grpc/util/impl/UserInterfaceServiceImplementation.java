@@ -1975,29 +1975,29 @@ public class UserInterfaceServiceImplementation extends UserInterfaceImplBase {
 			windowNo = windowNoEmulation.getAndIncrement();
 		}
 		//	Initial load for callout wrapper
-		GridWindowVO gridWindowVo = GridWindowVO.create(context, windowNo, tab.getAD_Window_ID());
-		GridWindow gridWindow = new GridWindow(gridWindowVo, true);
-		GridTabVO gridTabVo = GridTabVO.create(gridWindowVo, tabNo, tab, false, true);
-		GridFieldVO gridFieldVo = GridFieldVO.create(context, windowNo, tabNo, tab.getAD_Window_ID(), tab.getAD_Tab_ID(), false, field);
-		GridField gridField = new GridField(gridFieldVo);
-		GridTab gridTab = new GridTab(gridTabVo, gridWindow, true);
-		//	Init tab
-		gridTab.query(false);
-		gridTab.clearSelection();
-		gridTab.dataNew(false);
-		//	load values
-		Map<String, Object> attributes = ValueUtil.convertValuesToObjects(request.getAttributesList());
-		for(Entry<String, Object> attribute : attributes.entrySet()) {
-			gridTab.setValue(attribute.getKey(), attribute.getValue());
-		}
-		//	Load value for field
-		gridField.setValue(ValueUtil.getObjectFromValue(request.getOldValue()), false);
-		gridField.setValue(ValueUtil.getObjectFromValue(request.getValue()), false);
-		//	Run it
-		String result = processCallout(context, windowNo, gridTab, gridField);
-		Arrays.asList(gridTab.getFields()).stream().filter(fieldValue -> isValidChange(fieldValue))
-		.forEach(fieldValue -> calloutBuilder.putValues(fieldValue.getColumnName(), ValueUtil.getValueFromObject(fieldValue.getValue()).build()));
-		calloutBuilder.setResult(ValueUtil.validateNull(result));
+//		GridWindowVO gridWindowVo = GridWindowVO.create(context, windowNo, tab.getAD_Window_ID());
+//		GridWindow gridWindow = new GridWindow(gridWindowVo, true);
+//		GridTabVO gridTabVo = GridTabVO.create(gridWindowVo, tabNo, tab, false, true);
+//		GridFieldVO gridFieldVo = GridFieldVO.create(context, windowNo, tabNo, tab.getAD_Window_ID(), tab.getAD_Tab_ID(), false, field);
+//		GridField gridField = new GridField(gridFieldVo);
+//		GridTab gridTab = new GridTab(gridTabVo, gridWindow, true);
+//		//	Init tab
+//		gridTab.query(false);
+//		gridTab.clearSelection();
+//		gridTab.dataNew(false);
+//		//	load values
+//		Map<String, Object> attributes = ValueUtil.convertValuesToObjects(request.getAttributesList());
+//		for(Entry<String, Object> attribute : attributes.entrySet()) {
+//			gridTab.setValue(attribute.getKey(), attribute.getValue());
+//		}
+//		//	Load value for field
+//		gridField.setValue(ValueUtil.getObjectFromValue(request.getOldValue()), false);
+//		gridField.setValue(ValueUtil.getObjectFromValue(request.getValue()), false);
+//		//	Run it
+//		String result = processCallout(context, windowNo, gridTab, gridField);
+//		Arrays.asList(gridTab.getFields()).stream().filter(fieldValue -> isValidChange(fieldValue))
+//		.forEach(fieldValue -> calloutBuilder.putValues(fieldValue.getColumnName(), ValueUtil.getValueFromObject(fieldValue.getValue()).build()));
+//		calloutBuilder.setResult(ValueUtil.validateNull(result));
 		return calloutBuilder;
 	}
 	
